@@ -1061,15 +1061,15 @@ Services Style
 }
 
 .our-services .first-bar .filled-bar {
-  width: 71%;
+  width: 100%;
 }
 
 .our-services .second-bar .filled-bar {
-  width: 83%;
+  width: 100%;
 }
 
 .our-services .third-bar .filled-bar {
-  width: 90%;
+  width: 100%;
 }
 
 
@@ -1158,7 +1158,8 @@ Portfolio
 }
 
 .our-portfolio .showed-content img {
-  max-width: 100px;
+  max-width: 250px;
+  border-radius: 10px;
 }
 
 

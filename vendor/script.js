@@ -16,7 +16,7 @@ document.getElementById('contact').addEventListener('submit', function(event) {
     var email = document.getElementById('email').value;
     var message = document.getElementById('message').value;
 
-    // Prepare the email parameters
+    // Prepare the email parameters 
     var templateParams = {
         from_name: name + ' ' + surname,
         from_email: email,

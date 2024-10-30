@@ -117,6 +117,100 @@ return EvEmitter;
 
 }));
 
+
+/*
+For Contact form
+*/
+function sendEmail(e) {
+  e.preventDefault();
+  
+  // Get the form element directly
+  const form = document.getElementById('contact');
+  
+  // Check if form exists
+  if (!form) {
+      console.error('Form not found');
+      return;
+  }
+  
+  // Get form values
+  const name = document.getElementById('name').value;
+  const surname = document.getElementById('surname').value;
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+  
+  // Disable the submit button during submission
+  const submitButton = document.getElementById('form-submit');
+  if (submitButton) {
+      submitButton.disabled = true;
+  }
+  
+  // Prepare template parameters
+  const templateParams = {
+      from_name: `${name} ${surname}`,
+      from_email: email,
+      message: message
+  };
+  
+  // Your EmailJS service details
+  const serviceID = 'service_veg7beq';
+  const templateID = 'template_3uuogfa';
+  const publicKey = 'G7VuMSm4n4GrP9eCY';
+  
+  emailjs.send(serviceID, templateID, templateParams, publicKey)
+      .then((response) => {
+          console.log('SUCCESS!', response.status, response.text);
+          alert('Message sent successfully! Our team will reach out to you shortly.');
+          
+          // Enhanced form reset logic
+          try {
+              // Clear all input fields
+              const inputs = form.getElementsByTagName('input');
+              for(let input of inputs) {
+                  input.value = '';
+              }
+              
+              // Clear textarea
+              const textarea = form.getElementsByTagName('textarea')[0];
+              if(textarea) {
+                  textarea.value = '';
+              }
+              
+              // Alternative method if the above doesn't work
+              const nameInput = document.getElementById('name');
+              const surnameInput = document.getElementById('surname');
+              const emailInput = document.getElementById('email');
+              const messageInput = document.getElementById('message');
+              
+              if(nameInput) nameInput.value = '';
+              if(surnameInput) surnameInput.value = '';
+              if(emailInput) emailInput.value = '';
+              if(messageInput) messageInput.value = '';
+              
+          } catch (resetError) {
+              console.error('Error resetting form:', resetError);
+          }
+      })
+      .catch((error) => {
+          console.error('FAILED...', error);
+          alert('Failed to send message. Please try again.');
+      })
+      .finally(() => {
+          // Re-enable the submit button
+          if (submitButton) {
+              submitButton.disabled = false;
+          }
+      });
+}
+
+// Add event listener to form when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contact');
+  if (form) {
+      form.addEventListener('submit', sendEmail);
+  }
+});
+
 /*!
  * imagesLoaded v4.1.4
  * JavaScript is all like "You images are done yet or what?"

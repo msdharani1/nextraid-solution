@@ -175,18 +175,6 @@ body {
 .page-section {
   margin-top: 120px;
 }
-.section-heading{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px; 
-}
-.center{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .section-heading h2 {
   font-size: 30px;
@@ -1189,7 +1177,6 @@ Blog
 
 .our-blog .section-heading h2 {
   margin-right: 180px;
-  /* margin: 50px; */
 }
 
 .our-blog .top-dec {
